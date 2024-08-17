@@ -1,5 +1,5 @@
 <script>
-    import AboutMe from "./About_me.svelte";
+    import AboutMeDiv from "./About_me_div.svelte";
 </script>
 
-<AboutMe></AboutMe>
+<AboutMeDiv></AboutMeDiv>

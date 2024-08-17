@@ -1,9 +1,9 @@
 {
-    "social_media":{
-        "X":"",
-        "IG":"",
-        "tiktok":"",
-        "youtube":""
-    }
-    
+    "social_media":[
+        {"name":"X", "username":""},
+        {"name":"instagram", "username":""},
+        {"name":"tiktok", "username":""},
+        {"name":"youtube", "username":""}
+    ]
+
 }
