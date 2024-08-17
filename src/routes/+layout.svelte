@@ -3,5 +3,6 @@
 
 </script>
 
+<title>Protfolio</title>
 <slot />
 

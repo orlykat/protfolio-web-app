@@ -1,9 +1,10 @@
 {
     "social_media":[
         {"name":"X", "username":""},
-        {"name":"instagram", "username":""},
+        {"name":"instagram", "username":"paula.aisen"},
         {"name":"tiktok", "username":""},
         {"name":"youtube", "username":""}
-    ]
+    ],
+    "about_me_desc":"This is where you should write an intro about yourself. Write about your age, background or anything else that comes to mind"
 
 }
