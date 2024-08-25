@@ -1,5 +1,7 @@
 <script>
-    import AboutMeDiv from "./About_me_div.svelte";
+    import AboutMe from "./About_me.svelte";
+    import MyArtworks from "./My_artworks.svelte";
 </script>
 
-<AboutMeDiv></AboutMeDiv>
+<AboutMe></AboutMe>
+<MyArtworks></MyArtworks>
