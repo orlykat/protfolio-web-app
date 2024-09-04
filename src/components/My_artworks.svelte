@@ -1,54 +1,87 @@
 <script>
+    let isOpen = false;
+    let slide;
     let y;
     let titleWidth;
-    let artworkUrls = [];
-    const artworkModules = import.meta.glob("../../static/images/artworks/*.jpg");
+    let window;
+    const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
    
-    artworkUrls= Object.keys(artworkModules);
-    // async function print() {
-    //     console.log(titleWidth)
-    // }
-    //     for (let i = 0; i < 60; i++) {
-    //     setTimeout(() => {
-    //         print()
-    //     }, 3000 * (i + 1));
-    // }
-    
+    let artworks= Object.keys(artworkModules).map(url => ({"url":url,
+                                                            "name":(url.split('/')[url.split('/').length -1]).split('.')[0],
+                                                            "element":null}));
+    function openCard(el){
+        console.log(el)
+        if(isOpen){
+            slide.classList.remove("paused")
+        }else{
+            slide.classList.add("paused")
+            el.classList.add("invisible");
+            let cardElement = el.innerHTML
+            console.log(cardElement)
+            
+            
+        }
+        isOpen = !isOpen
 
+    }
+    console.log(artworks)
 
 </script>
 <style>
 
+.frame {
+  background-color:rgb(228, 228, 234);
+  border:solid 1rem #eee;
+  border-bottom-color:#fff;
+  border-left-color:#eee;
+  border-radius:2px;
+  border-right-color:#eee;
+  border-top-color:#ddd;
+  box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+  margin:1rem 3rem;
+  padding:2rem;
+  &:before {
+    border-radius:2px;
+    bottom:-3vmin;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+    content:"";
+    left:-2vmin;
+    position:absolute;
+    right:-2vmin;
+    top:-2vmin;
+  }
+  &:after {
+    border-radius:2px;
+    bottom:-2.5vmin;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+    content:"";
+    left:-2.5vmin;
+    position:absolute;
+    right:-2.5vmin;
+    top:-2.5vmin;
+  }
+}
 </style>
 
-<section id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col">
+<section bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col">
     <div class="pt-6 mx-auto w-fit mt-16">
-        <h1 bind:clientWidth={titleWidth} class="align-bottom font-bold lg:text-4xl text-xl text-center border-b-2 border-stone-400">my Artworks</h1>
+        <h1 bind:clientWidth={titleWidth} class="align-bottom font-bold md:text-4xl text-xl text-center border-b-2 border-stone-400">my Artworks</h1>
     </div>
-    <div class="w-full h-full relative overflow-clip">
+    <div class="w-full h-4/5 relative overflow-clip">
         <div class="absolute pointer-events-none h-3/4 w-[400%] z-10 bg-gradient-to-b from-orange-100 opacity-30  left-1/2 transform -translate-x-1/2 to-70%" style="clip-path:polygon(calc(50% - {titleWidth/2}px) 0%,calc(50% + {titleWidth/2}px) 0%,100% 100%,0 100%)">
         </div>
-        <div class="flex relative h-full space-x-16 group">
-            <div class="relative h-full flex space-x-16 animate-loop-scroll group-active:paused">
-                <!-- TODO fix duplication -->
-                {#each artworkUrls as url}
-                    <div class="h-1/2 w-fit relative flex align-middle">
-                        <img draggable="false" alt="frame" src="../../static/images/frame.png" class="h-11/12 absolute top-1/2 select-none left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <img draggable="false" alt="{url.split('/')[url.split('/').length -1]}" src="{url}" class="h-3/4 px-5 select-none pt-20 max-w-none">
-                </div>
-                    
-                {/each}
-
-            </div>
-            <div class="relative h-full flex space-x-16 animate-loop-scroll group-active:paused" aria-hidden="true">
-                {#each artworkUrls as url}
-                    <div class="h-1/2 w-fit relative flex align-middle">
-                        <img draggable="false" alt="frame" src="../../static/images/frame.png" class="h-11/12 select-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <img draggable="false" alt="{url.split('/')[url.split('/').length -1]}" src="{url}" class="h-3/4 select-none px-5 pt-20 max-w-none">
-                    </div>
-                    
+        <div  class="flex relative h-full items-center space-x-16 group">
+            <!-- {#each {length: 2} as _, i} -->
+            <div bind:this={slide} class="animate-loop-scroll relative h-3/5 flex space-x-16  items-center content-around ">
+                {#each artworks as artwork}
+                    <button class="h-full w-fit" bind:this={artwork["element"]} on:click={openCard(artwork["element"])}>
+                        <div id="{artwork.name}" class="h-full w-fit relative  select-none frame">
+                            <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-full max-w-none">
+                        </div>
+                    </button>
                 {/each}
             </div>
+        <!-- {/each} -->
         </div>
     </div>
 </section> 

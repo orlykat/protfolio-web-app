@@ -12,7 +12,7 @@
 <!-- TODO make this dynamic -->
  <!-- TODO fix text shadow -->
 <header class="z-50 sticky top-0 ">
-    <div class="backdrop-blur-xl absolute h-16 border-b-2 border-gray-600 flex w-full shadow-lg justify-evenly items-center ">
+    <div class="backdrop-blur-xl backdrop-brightness-90 absolute h-16 border-b-2 border-gray-600 flex w-full shadow-lg justify-evenly items-center">
     <a on:click|preventDefault={scrollIntoView} href="#about-me-section" class="cursor-pointer font-medium hover:text-xl duration-500 hover:text-shadow-lg">
         About me
     </a>
