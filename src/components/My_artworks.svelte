@@ -2,6 +2,7 @@
     let isOpen = false;
     let slide;
     let y;
+    let card;
     let titleWidth;
     let window;
     const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
@@ -18,6 +19,9 @@
             el.classList.add("invisible");
             let cardElement = el.innerHTML
             console.log(cardElement)
+            card.innerHTML =cardElement
+            card
+
             
             
         }
@@ -63,9 +67,14 @@
 }
 </style>
 
-<section bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col">
+<section bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col relative">
+    
     <div class="pt-6 mx-auto w-fit mt-16">
         <h1 bind:clientWidth={titleWidth} class="align-bottom font-bold md:text-4xl text-xl text-center border-b-2 border-stone-400">my Artworks</h1>
+    </div>
+    <div bind:this={card} class="absolute left-1/2 top-1/2 bg-red-700 -translate-x-1/2 -translate-y-1/2 z-50 flex">
+        <p>hihkhjo</p>
+
     </div>
     <div class="w-full h-4/5 relative overflow-clip">
         <div class="absolute pointer-events-none h-3/4 w-[400%] z-10 bg-gradient-to-b from-orange-100 opacity-30  left-1/2 transform -translate-x-1/2 to-70%" style="clip-path:polygon(calc(50% - {titleWidth/2}px) 0%,calc(50% + {titleWidth/2}px) 0%,100% 100%,0 100%)">
@@ -76,7 +85,7 @@
                 {#each artworks as artwork}
                     <button class="h-full w-fit" bind:this={artwork["element"]} on:click={openCard(artwork["element"])}>
                         <div id="{artwork.name}" class="h-full w-fit relative  select-none frame">
-                            <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-full max-w-none">
+                            <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-64 max-w-none">
                         </div>
                     </button>
                 {/each}
