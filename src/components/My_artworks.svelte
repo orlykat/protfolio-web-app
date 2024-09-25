@@ -1,43 +1,68 @@
 <script>
+    import {clickOutside} from '../lib/clickOutside'
+
     let isOpen = false;
-    let slide;
     let y;
-    let cardArt;
+    let cardArt,window,cardWindow,slide, artTitle, artDesc;
     let titleWidth;
-    let window;
+    let lock = false;
     const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
+    const apiURL =
+    "https://orlykat.github.io/protfolio-web-app/static/data.json";
    
+    onMount(async () => {
+        const response = await fetch(apiURL);
+        if (response.status === 200) {
+            let dataObject = await response.json();
+            desc = dataObject.artworks
+        } else {
+            throw new Error(response.status);
+        }
+    });
     let artworks= Object.keys(artworkModules).map(url => ({"url":url,
                                                             "name":(url.split('/')[url.split('/').length -1]).split('.')[0],
-                                                            "element":null}));
+                                                            "element":null,
+                                                            "title": desc[(url.split('/')[url.split('/').length -1]).split('.')[0]],
+                                                            "desc":"תאריך: \n כלי: \n"
+                                                        }));
+
+
 
     function closeCard(){
-        console.log('khhkhih')
+        lock = true;
         if (isOpen){
+            isOpen = !isOpen
             cardArt.innerHTML = ''
+            artDesc.innerHTML = ''
+            artTitle.innerHTML = ''
+            cardWindow.classList.replace("absolute","hidden")
             slide.classList.remove("paused")
             cardArt.classList.remove("animate-swing")
             slide.classList.remove("pointer-events-none")  
         }
-        isOpen = !isOpen
-
+        lock = false;
     }
-    function openCard(el){
+
+    function openCard(artwork){
+        console.log("open")
         // #TODO make more svelte
         if(isOpen){
             slide.classList.remove("paused")
         }else{
+            let el = artwork["element"]
+            isOpen = !isOpen   
             slide.classList.add("paused")
+            cardWindow.classList.replace("hidden","absolute")
             let cardElement = el.innerHTML
             cardArt.classList.add("animate-swing")
-            cardArt.innerHTML =cardElement
-            slide.classList.add("pointer-events-none")    
+            cardArt.innerHTML = cardElement
+            slide.classList.add("pointer-events-none")
+            artTitle.innerHTML = artwork["title"]
+            artDesc.innerHTML = artwork["desc"]
+
         }
-        isOpen = !isOpen
 
     }
-    console.log(artworks)
-
 </script>
 <style>
 
@@ -75,17 +100,17 @@
 </style>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-<section on:click={closeCard()} bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col relative">
-    <div  class="absolute left-1/2 top-1/2 bg-slate-300 -translate-x-1/2 -translate-y-1/2 z-50 flex items-center md:p-12 p-8 md:gap-16 gap-8 rounded-lg flex-col md:flex-row md:w-2/3 h-2/3 md:h-fit">
+<section bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col relative">
+    <div bind:this={cardWindow} class=" hidden left-1/2 top-1/2 bg-slate-300 -translate-x-1/2 -translate-y-1/2 z-50 flex items-center md:p-12 p-8 md:gap-16 gap-8 rounded-lg flex-col md:flex-row-reverse md:w-2/3  md:h-fit" on:click_outside={closeCard} use:clickOutside>
         <div bind:this={cardArt} class="origin-top"></div>
-        <div class="hidden">
-            <h2 class="text-xl mb-6">text</h2>
-            <p>more text more textmore textmore textmore textmore textmore textmore textmore textmore textmore textmore text</p>
+        <div class="">
+            <h2 bind:this={artTitle} class="text-xl mb-6 text-right"></h2>
+            <p bind:this={artDesc} class="text-right"></p>
         </div>
     </div>
 
     <div class="pt-6 mx-auto w-fit mt-16">
-        <h1 bind:clientWidth={titleWidth} class="align-bottom font-bold md:text-4xl text-xl text-center border-b-2 border-stone-400">העבודות שלי</h1>
+        <h1 bind:clientWidth={titleWidth} class="align-bottom font-bold md:text-4xl text-xl text-center border-b-2 border-stone-700">העבודות שלי</h1>
     </div>
     
 
@@ -96,7 +121,7 @@
             <!-- {#each {length: 2} as _, i} -->
             <div bind:this={slide} class="animate-loop-scroll relative h-3/5 flex space-x-16  items-center content-around ">
                 {#each artworks as artwork}
-                    <button class="w-fit" bind:this={artwork["element"]} on:click={openCard(artwork["element"])}>
+                    <button class="w-fit" bind:this={artwork["element"]} on:click={openCard(artwork)}>
                         <div id="{artwork.name}" class="w-fit relative  select-none frame">
                             <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-64 max-w-none">
                         </div>

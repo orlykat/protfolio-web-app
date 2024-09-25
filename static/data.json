@@ -5,6 +5,37 @@
         {"name":"tiktok", "username":""},
         {"name":"youtube", "username":""}
     ],
-    "about_me_desc":"זה המקום שבו אתה צריך לכתוב מבוא על עצמך. כתבו על הגיל, הרקע שלכם או כל דבר אחר שעולה על דעתכם"
-
+    "about_me_desc":"זה המקום שבו אתה צריך לכתוב מבוא על עצמך. כתבו על הגיל, הרקע שלכם או כל דבר אחר שעולה על דעתכם",
+    "artworks":{
+        "anime":{
+            "name":"",
+            "date":"",
+            "platform":"",
+            "extra":""
+        },
+        "japanese temple":{
+            "date":"יולי 2022",
+            "name":"מקדש יפני",
+            "platform":"טושים",
+            "extra":"ציירתי את זה בהשראת בלב בלבה בלב בלה בלה בלה "
+        },
+        "sea":{
+            "name":"",
+            "date":"",
+            "platform":"",
+            "extra":""
+        },
+        "sad dog":{
+            "name":"",
+            "date":"",
+            "platform":"",
+            "extra":""
+        },
+        "parrot":{
+            "name":"",
+            "date":"",
+            "platform":"",
+            "extra":""
+        }
+    }
 }

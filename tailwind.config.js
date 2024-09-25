@@ -5,7 +5,7 @@ export default {
     extend: {
         animation: {
           'loop-scroll': 'loop-scroll 40s linear infinite',
-          'swing': 'swing 2.5s linear'
+          'swing': 'swing 1.1s ease-out'
         },
         keyframes: {
           'loop-scroll': {
@@ -13,11 +13,10 @@ export default {
             to: { transform: 'translateX(-100%)' },
           },
           'swing':{
-            "0%": { transform: 'rotate(-15deg)' },
-            "20%": { transform: 'rotate(12.5deg)' },
-            "40%": { transform:' rotate(-10deg)' },
-            "60%": { transform: 'rotate(7.5deg)' }, 
-            "80%": { transform: 'rotate(-5deg) '}, 
+            "0%": { transform:' rotate(0deg)' },
+            "10%": { transform:' rotate(-7.5deg)' },
+            "25%": { transform: 'rotate(5deg)' }, 
+            "57%": { transform: 'rotate(-2.5deg) '}, 
             "100%": { transform: 'rotate(0deg)' } 
           }
         }     
