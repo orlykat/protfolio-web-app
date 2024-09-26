@@ -1,32 +1,35 @@
 <script>
     import {clickOutside} from '../lib/clickOutside'
-
+    import { onMount } from "svelte";
     let isOpen = false;
     let y;
     let cardArt,window,cardWindow,slide, artTitle, artDesc;
     let titleWidth;
+    let artData;
     let lock = false;
+    let artworks = [];
     const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
-    const apiURL =
-    "https://orlykat.github.io/protfolio-web-app/static/data.json";
+    const apiURL ="https://orlykat.github.io/protfolio-web-app/static/data.json";
    
     onMount(async () => {
         const response = await fetch(apiURL);
         if (response.status === 200) {
             let dataObject = await response.json();
-            desc = dataObject.artworks
+            artData = dataObject.artworks
+            
+            artworks= Object.keys(artworkModules).map(url => ({"url":url,
+                                                            "name":(url.split('/')[url.split('/').length -1]).split('.')[0],
+                                                            "element":null,
+                                                            "title": artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["name"],
+                                                            "desc":`תאריך: ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["date"]}<br> כלי: ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["platform"]}<br> ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["extra"]}`
+                                                        }));
+                                                        
+            console.log(artworks)
         } else {
             throw new Error(response.status);
         }
+        
     });
-    let artworks= Object.keys(artworkModules).map(url => ({"url":url,
-                                                            "name":(url.split('/')[url.split('/').length -1]).split('.')[0],
-                                                            "element":null,
-                                                            "title": desc[(url.split('/')[url.split('/').length -1]).split('.')[0]],
-                                                            "desc":"תאריך: \n כלי: \n"
-                                                        }));
-
-
 
     function closeCard(){
         lock = true;
@@ -101,11 +104,11 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
 <section bind:this={window} id="my-artworks-section" class="bg-slate-400 w-auto h-screen flex flex-col relative">
-    <div bind:this={cardWindow} class=" hidden left-1/2 top-1/2 bg-slate-300 -translate-x-1/2 -translate-y-1/2 z-50 flex items-center md:p-12 p-8 md:gap-16 gap-8 rounded-lg flex-col md:flex-row-reverse md:w-2/3  md:h-fit" on:click_outside={closeCard} use:clickOutside>
+    <div bind:this={cardWindow} class=" hidden left-1/2 top-1/2 bg-slate-300 -translate-x-1/2 -translate-y-1/2 z-50 flex  items-center md:p-12 p-8 md:gap-16 gap-8 rounded-lg flex-col md:flex-row-reverse md:w-2/3  md:h-fit" on:click_outside={closeCard} use:clickOutside>
         <div bind:this={cardArt} class="origin-top"></div>
-        <div class="">
+        <div dir="rtl" class="self-start">
             <h2 bind:this={artTitle} class="text-xl mb-6 text-right"></h2>
-            <p bind:this={artDesc} class="text-right"></p>
+            <p class="text-right" bind:this={artDesc} ></p>
         </div>
     </div>
 
@@ -119,7 +122,7 @@
         </div>
         <div  class="flex relative h-full items-center space-x-16 group">
             <!-- {#each {length: 2} as _, i} -->
-            <div bind:this={slide} class="animate-loop-scroll relative h-3/5 flex space-x-16  items-center content-around ">
+            <div bind:this={slide} class="animate-loop-scroll relative h-3/5 flex space-x-16  items-center content-around">
                 {#each artworks as artwork}
                     <button class="w-fit" bind:this={artwork["element"]} on:click={openCard(artwork)}>
                         <div id="{artwork.name}" class="w-fit relative  select-none frame">
