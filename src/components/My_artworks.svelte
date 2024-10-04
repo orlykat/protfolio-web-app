@@ -8,7 +8,7 @@
     let artData;
     let lock = false;
     let artworks = [];
-    const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
+    const artworkModules = import.meta.glob("/src/images/artworks/*.*");
     const apiURL ="https://orlykat.github.io/protfolio-web-app/static/data.json";
    
     onMount(async () => {
