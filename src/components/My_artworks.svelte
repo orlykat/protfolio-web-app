@@ -1,5 +1,5 @@
 <script>
-    import {clickOutside} from '../lib/clickOutside'
+    import {clickOutside} from '$lib/clickOutside'
     import { onMount } from "svelte";
     let isOpen = false;
     let y;
@@ -8,7 +8,7 @@
     let artData;
     let lock = false;
     let artworks = [];
-    const artworkModules = import.meta.glob("/src/images/artworks/*.*");
+    const artworkModules = import.meta.glob("../../static/images/artworks/*.*");
     const apiURL ="https://orlykat.github.io/protfolio-web-app/static/data.json";
    
     onMount(async () => {
@@ -17,14 +17,13 @@
             let dataObject = await response.json();
             artData = dataObject.artworks
             
-            artworks= Object.keys(artworkModules).map(url => ({"url":url,
+            artworks= Object.keys(artworkModules).map(url => ({"url":`/images/artworks/${url.split('/')[url.split('/').length -1]}`,
                                                             "name":(url.split('/')[url.split('/').length -1]).split('.')[0],
                                                             "element":null,
                                                             "title": artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["name"],
                                                             "desc":`תאריך: ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["date"]}<br> כלי: ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["platform"]}<br> ${artData[(url.split('/')[url.split('/').length -1]).split('.')[0]]["extra"]}`
                                                         }));
                                                         
-            console.log(artworks)
         } else {
             throw new Error(response.status);
         }
