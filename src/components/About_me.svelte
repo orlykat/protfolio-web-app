@@ -23,7 +23,7 @@
 
 <section id="about-me-section" class="bg-stone-300 w-auto h-screen flex justify-evenly">
     <figure class="w-4/5 mx-auto py-6 md:flex items-center md:flex-row-reverse gap-6 mt-16 md:m-0 ">
-          <div class="w-3/4 min-w-52 max-w-72  md:min-w-min aspect-square md:h-2/3 md:w-auto mx-auto [&_img]:cursor-pointer [transform-style:preserve-3d] relative active:[transform:rotateY(180deg)] hover:[transform:rotateY(180deg)] duration-500 transition-all ">
+          <div class="w-5/6 min-w-52 max-w-72  md:min-w-min aspect-square md:h-2/3 md:w-auto mx-auto [&_img]:cursor-pointer [transform-style:preserve-3d] relative active:[transform:rotateY(180deg)] hover:[transform:rotateY(180deg)] duration-500 transition-all ">
             <img alt="profile_picture" id="profile_picture" src={user_photo} class="h-full w-full shadow-stone-500 object-cover rounded-full shadow-lg absolute">
             <div class=" bg-black/75 rounded-full h-full w-full  [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-clip flex items-center">
                   <div class="h-4/6 w-full flex-col flex justify-evenly items-center ">
@@ -45,8 +45,8 @@
 
         <figcaption>
             <div class="p-4">
-                <h1 class="font-bold lg:text-4xl text-xl text-right">על עצמי</h1>
-                <p class="font-medium lg:text-xl text-xsalign-bottom text-pretty pt-3 text-right">{desc}</p>
+                <h1 class="font-bold lg:text-4xl text-2xl text-right">על עצמי</h1>
+                <p class="font-medium lg:text-xl text-m align-bottom text-pretty pt-3 text-right">{desc}</p>
             </div>
         </figcaption> 
     </figure>
