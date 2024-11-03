@@ -28,6 +28,7 @@
 	"type": "module",
 	"dependencies": {
 		"amplify-adapter": "^0.1.2",
-		"aws-amplify": "^6.6.3"
+		"aws-amplify": "^6.6.3",
+		"gsap": "^3.12.5"
 	}
 }
