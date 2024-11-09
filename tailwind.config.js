@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
         animation: {
-          'loop-scroll': 'loop-scroll 40s linear infinite',
+          'loop-scroll': 'loop-scroll 30s linear infinite',
           'swing': 'swing 1.5s ease-in-out'
         },
         keyframes: {
           'loop-scroll': {
             from: { transform: 'translateX(0)' },
-            to: { transform: 'translateX(-100%)' },
+            to: { transform: 'translateX(-50%)' },
           },
           'swing':{
             "0%": { transform:' rotate(0deg)' },

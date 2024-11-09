@@ -3,7 +3,74 @@
 @tailwind utilities;
 
 @layer utilities {
+  
     .paused {
       animation-play-state: paused;
+    }
+    .bg-wood{
+        padding: 0.4em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1.5fr 1fr 1fr 1fr;
+        gap: 1.2em;
+        background-repeat: no-repeat;
+        background-image: radial-gradient(circle at top right, rgba(0, 0, 0, 0.05) 10%, transparent 20%),
+                          radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.1) 10%, transparent 40%),
+                          radial-gradient(circle at 7% 0, rgba(0, 0, 0, 0.1) 3%, transparent 10%),
+                          radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.1) 10%, transparent 20%),
+                          linear-gradient(to right, transparent 15%, rgba(0, 0, 0, 0.07) 20%, transparent 25%),
+                          linear-gradient(75deg, transparent 40%, rgba(0, 0, 0, 0.1) 50%, transparent 60%),
+                          linear-gradient(to bottom, transparent calc(.2em - .1em),
+                                          rgba(0, 0, 0, 0.07)  calc(.2em - .1em),
+                                          rgba(0, 0, 0, 0.15)  calc(.2em + .2em),
+                                          transparent calc(.2em + .5em)),
+                          linear-gradient(to top, transparent .2em,
+                                         rgba(0, 0, 0, 0.07) .2em,
+                                         rgba(0, 0, 0, 0.15) calc(.2em + .2em),
+                                         transparent calc(.2em + .4em)),
+                          repeating-linear-gradient(to bottom, transparent, transparent .2em,
+                                                    rgba(0, 0, 0, 0.06) .3em,
+                                                    transparent .5em),
+                          linear-gradient(130deg, sienna, saddlebrown);
+        border-radius: .2em;
+        box-shadow:0 0 2px 0 rgba(0,0,0,.15) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+
+      
+      
+    }
+    ::-webkit-scrollbar {
+      height: 0px;              
+      width: 0px;               
+    }
+    .frame {
+      background-color:rgb(228, 228, 234);
+      border:solid 1rem #eee;
+      border-bottom-color:#fff;
+      border-left-color:#eee;
+      border-radius:2px;
+      border-right-color:#eee;
+      border-top-color:#ddd;
+      box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+      padding:2rem;
+      &:before {
+        border-radius:2px;
+        bottom:-3vmin;
+        box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+        content:"";
+        left:-2vmin;
+        position:absolute;
+        right:-2vmin;
+        top:-2vmin;
+      }
+      &:after {
+        border-radius:2px;
+        bottom:-2.5vmin;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+        content:"";
+        left:-2.5vmin;
+        position:absolute;
+        right:-2.5vmin;
+        top:-2.5vmin;
+      }
     }
   }
