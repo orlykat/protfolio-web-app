@@ -23,7 +23,7 @@
 <section id="about-me-section" class="w-auto h-screen bg-[#d59fd2] dark:bg-[#593457] flex justify-evenly">
     <figure class="w-4/5 mt-16 mx-auto py-6 md:flex items-center md:flex-row-reverse gap-6 md:m-0 ">
           <div class="w-3/4 min-w-52 max-w-72  md:min-w-min aspect-square md:h-2/3 md:w-auto mx-auto [&_img]:cursor-pointer [transform-style:preserve-3d] relative active:[transform:rotateY(180deg)] hover:[transform:rotateY(180deg)] duration-500 transition-all ">
-            <img alt="profile_picture" id="profile_picture" src="../../static/images/user_photo.jpg" class="h-full w-full shadow-stone-500 object-cover rounded-full shadow-lg absolute">
+            <img alt="profile_picture" id="profile_picture" src="/images/user_photo.jpg" class="h-full w-full shadow-stone-500 object-cover rounded-full shadow-lg absolute">
             <div class=" bg-black/75 rounded-full h-full w-full  [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-clip flex items-center">
                   <div class="h-4/6 w-full flex-col flex justify-evenly items-center ">
                       {#each social_media as account}
