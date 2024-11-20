@@ -19,5 +19,8 @@
     <a on:click|preventDefault={scrollIntoView} href="#my-artworks-section" class=" dark:text-gray-50 cursor-pointer font-medium hover:text-xl duration-500 hover:text-shadow-lg">
         העבודות שלי
     </a>
+    <a on:click|preventDefault={scrollIntoView} href="#my-artworks-section" class=" dark:text-gray-50 cursor-pointer font-medium hover:text-xl duration-500 hover:text-shadow-lg">
+    
+  </a>
 </div>
 </header>

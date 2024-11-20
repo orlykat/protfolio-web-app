@@ -90,7 +90,7 @@ let startX, scrollLeft;
 </style>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-<section bind:this={window} id="my-artworks-section" class="w-auto h-screen bg-slate-300 dark:bg-slate-600 flex flex-col relative items-center justify-end">
+<section bind:this={window} id="my-artworks-section" class="w-auto h-screen bg-slate-300 dark:bg-slate-600 flex flex-col relative items-center justify-end overflow-hidden">
     <div bind:this={cardWindow} class=" hidden left-1/2 top-1/2 bg-slate-300 -translate-x-1/2 -translate-y-1/2 z-50 flex  items-center md:p-12 p-8 md:gap-16 gap-8 rounded-lg flex-col md:flex-row-reverse md:w-2/3  md:h-fit" on:click_outside={closeCard} use:clickOutside>
         <div bind:this={cardArt} class="origin-top"></div>
         <div dir="rtl" class="md:self-start self-end">
@@ -99,12 +99,12 @@ let startX, scrollLeft;
         </div>
     </div>
 
-    <div class="pt-6 mx-auto w-fit">
+    <div class="mt-20 mx-auto w-fit">
         <h1 bind:clientWidth={titleWidth} class="align-bottom dark:text-orange-50 font-bold md:text-4xl text-xl text-center border-b-2 border-stone-700">העבודות שלי</h1>
     </div>
     
 
-    <div  class="w-full h-3/4 relative overflow-hidden" >
+    <div  class="w-full h-5/6 relative overflow-hidden" >
         <div class="absolute pointer-events-none h-4/5 w-[400%] invisible dark:visible z-10 bg-gradient-to-b from-orange-100 opacity-30  left-1/2 transform -translate-x-1/2 to-70%" style="clip-path:polygon(calc(50% - {titleWidth/2}px) 0%,calc(50% + {titleWidth/2}px) 0%,100% 100%,0 100%)">
         </div>
         <div  class="flex relative h-full items-center space-x-16 group ">
@@ -114,7 +114,7 @@ let startX, scrollLeft;
                     {#each artworks as artwork}
                         <button class="w-fit" bind:this={artwork["element"]} on:click={openCard(artwork)}>
                             <div id="{artwork.name}" class="w-fit relative  select-none frame">
-                                <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-64 max-w-none">
+                                <img draggable="false" alt="{artwork.name}" src="{artwork.url}" class=" h-80 max-w-none">
                             </div>
                         </button>
                     {/each}

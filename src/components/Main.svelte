@@ -1,6 +1,7 @@
 <script>
     import AboutMe from "./About_me.svelte";
     import MyArtworks from "./My_artworks.svelte";
+    import ImportantInfo from "./Important_Info.svelte";
 </script>
 
 
@@ -11,6 +12,9 @@
     </div>
     <div class="snap-always snap-start">
         <MyArtworks ></MyArtworks>  
+    </div>
+    <div class="snap-always snap-start">
+        <ImportantInfo ></ImportantInfo>  
     </div>
     
 </div>
